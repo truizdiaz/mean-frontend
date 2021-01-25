@@ -5,7 +5,7 @@
                 <div class="card-body text-center">
                     <span class="titulo">LISTADO DE PRODUCTOS</span>
                     <button class="btn btn-success float-end" routerLink="/crear-producto">NUEVO</button>
-                    <table class="table table-striped mt-3">
+                    <table *ngIf="listProductos.length > 0" class="table table-striped mt-3">
                         <thead>
                           <tr>
                             <th scope="col">Producto</th>
@@ -16,29 +16,19 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>Coca Cola</td>
-                            <td>Bebida</td>
-                            <td>Buenos Aires</td>
-                            <td>2</td>
+                          <tr *ngFor="let producto of listProductos">
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.categoria }}</td>
+                            <td>{{ producto.ubicacion }}</td>
+                            <td>{{ producto.precio | currency:'USD' }}</td>
                             <td>
                                 <i class="fas fa-edit text-primary"></i>
                                 <i class="fas fa-trash text-danger"></i>
                             </td>
                           </tr>
-                          <tr>
-                            <td>Malboro 20</td>
-                            <td>Cigarrillos</td>
-                            <td>Barcelona</td>
-                            <td>3</td>
-                            <td>
-                                <i class="fas fa-edit text-primary"></i>
-                                <i class="fas fa-trash text-danger"></i>
-                            </td>
-                          </tr>
-                       
                         </tbody>
                       </table>
+                      <h5 style="text-align: start; margin-top: 10px;" *ngIf="listProductos.length == 0">No hay productos para mostrar</h5>
                 </div>
             </div>
         </div>
